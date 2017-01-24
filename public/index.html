@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+    <title>Momentum Thing</title>
+    
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- css -->
+    <link rel="stylesheet" href="css/grid.css">
+    <link rel="stylesheet" href="css/momentum.css">
+    
+    <!-- favicon -->
+    <link rel="shortcut icon" type="image/png" href="assets/meerkat_dark_180x180px.png">
+
+</head>
+<body>
+    
+    <!-- stupid DOM element used for background fade-in -->
+    <div class="splash"></div>
+    
+    <!-- ============================= HEADER ============================= -->
+    <header>
+        <div class="Grid">
+            <div class="Grid-cell">
+                <img id="meerkat-btn" class="brand" src="assets/meerkat_white_180x180px.png" title="About"/>
+            </div>
+            <div class="Grid-cell--autoSize">
+                <div id="weather-feature">
+                    [weather]
+                </div>
+            </div>
+        </div>   
+    </header>
+    
+    <!-- ========================== ABOUT PANEL =========================== -->
+    <aside id="about-panel" class="panel about-panel">
+        <div class="panel-content">
+            <h1>The General Meerkats</h1>
+            
+                <table class="about-table">
+                    <tr>
+                        <td class="td-author">Amdiou</td>
+                        <td class="td-right">
+                            <a href="https://github.com/KanteLabs"
+                               target="_blank"
+                               title="https://github.com/KanteLabs">
+                               <i class="fa fa-github"></i></a>
+                            <a href="#"
+                               target="_blank">
+                                <i class="fa fa-free-code-camp"></i></a>
+                            <a href="#"
+                               target="_blank">
+                                <i class="fa fa-twitter"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-author">Collin</td>
+                        <td class="td-right">
+                            <a href="https://github.com/collindching"
+                               title="https://github.com/collindching"
+                               target="_blank">
+                                <i class="fa fa-github"></i></a>
+                            <a href="#"
+                               target="_blank">
+                                <i class="fa fa-free-code-camp"></i></a>
+                            <a href="#"
+                               target="_blank">
+                                <i class="fa fa-twitter"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-author">Jake</td>
+                        <td class="td-right">
+                            <a href="#"
+                               target="_blank">
+                                <i class="fa fa-github"></i></a>
+                            <a href="#" target="_blank"><i class="fa fa-free-code-camp"></i></a>
+                            <a href="#"
+                               target="_blank">
+                                <i class="fa fa-twitter"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-author">Jay</td>
+                        <td class="td-right">
+                            <a href="http://belcurv.com"
+                               target="_blank" title="http://belcurv.com">
+                                <i class="fa fa-home"></i></a>
+                            <a href="https://github.com/belcurv"
+                               title="https://github.com/belcurv"
+                               target="_blank">
+                                <i class="fa fa-github"></i></a>
+                            <a href="https://www.freecodecamp.com/belcurv"
+                               title="https://www.freecodecamp.com/belcurv"
+                               target="_blank">
+                                <i class="fa fa-free-code-camp"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-author">Jezer</td>
+                        <td class="td-right">
+                            <a href="https://github.com/isafrus5"
+                               title="https://github.com/isafrus5"
+                               target="_blank">
+                                <i class="fa fa-github"></i></a>
+                            <a href="https://www.freecodecamp.com/isafrus5"
+                               target="_blank">
+                                <i class="fa fa-free-code-camp"></i></a>
+                            <a href="https://twitter.com/isaac_jzr"
+                               target="_blank">
+                                <i class="fa fa-twitter"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td-author">Thomas</td>
+                        <td class="td-right">
+                            <a href="https://github.com/toshiru"
+                               title="https://github.com/toshiru"
+                               target="_blank"><i class="fa fa-github"></i></a>
+                            <a href="https://freecodecamp.com/toshiru"
+                               target="_blank">
+                                <i class="fa fa-free-code-camp"></i></a>
+                            <a href="https://twitter.com/Thomasnguyen"
+                               target="_blank">
+                                <i class="fa fa-twitter"></i></a>
+
+                        </td>
+                    </tr>
+                </table>
+        </div>
+    </aside>
+
+    <article>
+        <!-- ====================== TIME & GREETING ======================= -->
+        <section>
+            <div class="time">
+                <span id="time"><!-- Time --></span>
+                <span id="time-period"><!-- AM/PM --></span>
+            </div>
+            <div class="greeting" id="time-message"><!-- greeting --></div>
+       </section>
+
+       <!-- =========================== FOCUS ============================= -->
+       <section class = "focus-section">
+            <form class = "focus">
+                <label for="focus-input" class="focus ask-focus">
+                    What is your main focus for today?
+                </label>
+                <input id="focus-input" class = "focus" type="text" autofocus />
+            </form> 
+            <div class = "focus focus-list">
+                <h4>Today</h4>
+                        <div class = "focus-list-container">
+                            <span class = "focus-buttons checkbox">
+                                <i class="fa fa-square-o" aria-hidden="true"></i>
+                            </span>
+                            <span class = "focus-list-message"></span>
+                            <span class = "focus-buttons close">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </span>
+                        </div>
+       </section>
+    </article>
+    
+    <!-- ========================= SETTINGS PANEL ========================= -->
+    <aside id="settings-panel" class="panel settings-panel">
+        <div class="panel-content">
+            <h1>Settings</h1>
+            <form>
+                <input id="name-input" class="settings-name-input"
+                type="text" placeholder="Your name here..." />
+            </form>
+            
+            <table class="settings-table">
+                <tr>
+                    <td>12-Hour Clock</td>
+                    <td class="td-right">
+                        <input id="12-hr-clock-chkbx" type="checkbox" />
+                        <label for="12-hr-clock-chkbx"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Show Weather</td>
+                    <td class="td-right">
+                        <input id="show-weather-chkbx" type="checkbox" />
+                        <label for="show-weather-chkbx"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Show To-Dos</td>
+                    <td class="td-right">
+                        <input id="show-todo-chkbx" type="checkbox" />
+                        <label for="show-todo-chkbx"></label>
+                    </td>
+                </tr>
+            </table>
+            
+            <div class="Grid">
+                <div class="Grid-cell">
+                    <button class="settings-btn" id="save-settings-btn">
+                        Save Settings
+                    </button>
+                </div>
+                <div class="Grid-cell--autoSize">
+                    <button class="settings-btn" id="clear-settings-btn">
+                        Clear Settings
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </aside>
+    
+    <!-- ========================== TODOS PANEL =========================== -->
+    <aside id="todos-panel" class="panel todos-panel">
+        <div class="panel-content">
+            <input type="text" name="" placeholder="Add a task" id="new-task">
+            <ul id="taskList"></ul>
+        </div>
+    </aside>
+    
+    
+    <!-- ============================= FOOTER ============================= -->
+    <footer>
+        <div id="settings-btn" class="footer-left">
+            <svg id="svg-gear" version="1.1"
+                 xmlns="http://www.w3.org/2000/svg"
+                 viewBox="340 245 280 70">
+                <path d="M620,305.666v-51.333l-31.5-5.25c-2.333-8.75-5.833-16.917-9.917-23.917L597.25,199.5l-36.167-36.75l-26.25,18.083 c-7.583-4.083-15.75-7.583-23.916-9.917L505.667,140h-51.334l-5.25,31.5c-8.75,2.333-16.333,5.833-23.916,9.916L399.5,163.333 L362.75,199.5l18.667,25.666c-4.083,7.584-7.583,15.75-9.917,24.5l-31.5,4.667v51.333l31.5,5.25 c2.333,8.75,5.833,16.334,9.917,23.917l-18.667,26.25l36.167,36.167l26.25-18.667c7.583,4.083,15.75,7.583,24.5,9.917l5.25,30.916 h51.333l5.25-31.5c8.167-2.333,16.333-5.833,23.917-9.916l26.25,18.666l36.166-36.166l-18.666-26.25 c4.083-7.584,7.583-15.167,9.916-23.917L620,305.666z M480,333.666c-29.75,0-53.667-23.916-53.667-53.666s24.5-53.667,53.667-53.667 S533.667,250.25,533.667,280S509.75,333.666,480,333.666z" />
+            </svg>
+
+        </div>
+        <div class="quote">
+            <a href="" id="quoteFeature"></a>
+        </div>
+        <div id="todos-btn" class="footer-right">
+            Todo
+        </div>
+    </footer>
+    
+    
+    <!-- =========================== JAVASCRIPT =========================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="js/local_storage.js"></script>
+    <script src="js/time2.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/quotes.js"></script>
+    <script src="js/todos.js"></script>
+    <script src="js/settings.js"></script>
+<!--    <script src="js/weather.js"></script>-->
+
+
+</body>
+</html>

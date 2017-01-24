@@ -1,0 +1,15 @@
+{
+  "name": "meerkat-momentum-server",
+  "version": "0.0.1",
+  "description": "Momentum Clone with Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "The General Meerkats",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.14.0",
+    "morgan": "^1.7.0"
+  }
+}

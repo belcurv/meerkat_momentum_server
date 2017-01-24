@@ -1,0 +1,571 @@
+/* resets */
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+/* anti-iOS Safari / Webkit tweak */
+textarea,
+input.text,
+input[type="text"],
+input[type="button"],
+input[type="submit"],
+input[type="date"],
+input[type="number"],
+.input-checkbox {
+    -webkit-appearance: none;
+    border-radius: 0;
+    margin: 0;
+}
+
+
+/* Remove number spinner from Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+
+/* Remove number spinner from Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    /* Removes leftover margin */
+}
+
+
+/* =============================== MAIN BODY =============================== */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    /* fonts */
+    font-family: 'Josefin Sans', 'Arial', sans-serif;
+    font-size: 14px;
+    color: #fff;
+    
+    /* background color and image */
+    background-color: #333;
+    
+    /* layout */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    justify-content: start;
+}
+
+/* full bleed background image container style */
+.splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transition: opacity 0.75s linear;
+    opacity: 0;
+    z-index: -1;
+}
+
+/* ============================= END MAIN BODY ============================= */
+
+
+/* ================================ HEADER ================================= */
+
+header {
+    position: fixed;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    
+    /* shadow */
+    background: -webkit-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0));
+    background: -o-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0));
+    background: -moz-linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0));
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0));    
+    
+    z-index: 1; /* must be > 0 or Glyphicons show above header */
+}
+
+.brand {
+    height: 54px;
+    padding: 5px 10px 0 10px;
+    cursor: pointer;
+    border-top: 2px solid transparent;
+}
+
+.brand:hover {
+    border-top: 2px solid white;
+}
+
+
+/* ============================== END HEADER =============================== */
+
+/* ============================== PANELS =============================== */
+
+#overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.5;
+    z-index: 998;
+}
+
+.panel {
+    position: fixed;
+    width: 380px;
+    padding: 10px;
+    background: rgba(0,0,0,.9);
+    border-radius: 5px;
+    z-index: 999;
+}
+
+.about-panel {
+    top: 64px;
+    left: -380px;
+    height: calc(50% - 64px);
+    transition: transform 0.3s ease;
+}
+
+.todos-panel {
+    bottom: 70px;
+    right: -380px;
+    height: calc(100% - 134px);
+    padding-top: 10px;
+    transition: transform 0.3s ease;
+    overflow-x: hidden;
+}
+
+.settings-panel {
+    bottom: 70px;
+    left: -380px;
+    height: calc(50% - 70px);
+    padding-top: 10px;
+    transition: transform 0.3s ease;
+}
+
+.about-show,
+.settings-show {
+    transform: translateX(390px);
+}
+
+.todos-show {
+    transform: translateX(-390px)
+}
+
+.panel-content {
+    height: 100%;
+    overflow-y: auto;
+}
+
+.panel-content > h1 {
+    text-align: center;
+    font-size: 2em;
+    border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+.panel-content > .about-table {
+    width: 100%;
+    height: calc(100% - 35px);
+    border-collapse: collapse;
+}
+
+.panel-content > .about-table tr:hover {
+    background: rgba(100,100,100,0.4);
+    color: rgba(255,255,255,1);
+}
+
+.panel-content > .about-table td {
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 0 10px;
+    vertical-align: middle;
+}
+
+.panel-content > .about-table td.td-right {
+    text-align: right;
+}
+
+.panel-content > .about-table td > a {
+    font-size: 1.5em;
+    padding: 0 5px;
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+}
+
+.panel-content > .about-table td > a:hover {
+    color: rgba(255,255,255,1);
+}
+
+.panel-content > form > .settings-name-input {
+    width: calc(100% - 20px);
+    margin: 10px;
+    font-size: 1.3em;
+    border: none;
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    padding: 10px 5px;
+}
+
+.panel-content > .settings-table {
+    width: 100%;
+    height: calc(100% - 145px);
+    border-collapse: collapse;
+}
+
+.panel-content > .settings-table td {
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: bold;
+    padding: 0 10px;
+    vertical-align: middle;
+}
+
+.panel-content > .settings-table td.td-right {
+    width: 20px;
+    text-align: left;
+}
+
+.panel-content > div .settings-btn {
+    font-size: 1.1em;
+    padding: 5px;
+    margin: 5px 10px 0 10px;
+    color: rgba(255,255,255,0.75);
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.panel-content > div .settings-btn:hover {
+    border: 1px solid rgba(255,255,255,1);
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    box-shadow: 0 0 10px 2px rgba(100,100,200,0.7);
+}
+
+/* custom settings checkboxes */
+input[type=checkbox] {
+    display:none;   /* hide the actual checkbox */
+}
+
+input[type=checkbox] + label:before {
+    cursor: pointer;
+    font-family: FontAwesome;
+    color: rgba(255,255,255,0.75);
+    content: "\f096";  /* unchecked icon */
+}
+
+input[type=checkbox] + label:hover:before {
+    color: rgba(255,255,255,1);
+}
+
+
+input[type=checkbox]:checked + label:before {
+    content: "\f046";  /* checked icon */
+    color: rgba(255,255,255,1);
+}
+
+/* ============================== END PANELS =============================== */
+
+
+/* ============================== MAIN CONTENT ============================= */
+
+article {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
+    flex-direction: column;
+    padding: 0.25em;
+    width: 100%;
+    justify-content: center;
+
+    /* push article beneath header */
+    margin-top: 60px;
+
+    /* limit main content width and center */
+    max-width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+
+/*    border: 1px black solid;*/
+}
+
+section {
+    -webkit-box-flex: 0;
+    -ms-flex: 0;
+    flex: 0;
+    padding: 0.5em;
+/*    border: 1px black solid;*/
+    align-self: center;
+    text-align: center;
+    text-shadow: 0px 0px 15px #000;
+}
+
+
+section #time {
+    font-size: 14em;
+}
+
+section #time-period {
+    font-size: 10em;
+}
+
+.greeting {
+    font-size: 4em;
+}
+
+
+.focus-section{
+    margin-top:0px;
+    height:120px;
+}
+.focus{
+    color:white;
+    text-align: center;
+    display: inline-block;
+    width: 720px;
+    text-shadow: none;
+}
+
+.ask-focus {
+    font-size: 2.5em;
+
+}
+
+#focus-input {
+    padding-top:12px;
+    padding-bottom:12px;
+    font-weight: 700;
+    width: 720px;
+    font-size: 2em;
+    background: rgba(255,255,255,0.1);
+    border-bottom: 2px solid white;
+    outline: 0;
+}
+
+.focus-list{
+    height:100px;
+    padding:1em;
+    font-size: 2em;
+    font-weight:700;
+    display: none;
+    line-height: 1.5;
+
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+    animation: fadein 1s;
+}
+
+.focus-list > h4{
+    font-size:16px;
+    font-weight:400;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+.focus-list-message{
+    padding:0px 25px 0px 25px;
+}
+.checkbox{
+    width:15px;
+    height:15px;
+    font-size: 20px;
+    display: none;
+}
+
+.close{
+    position: relative;
+    bottom:4px;
+    width:15px;
+    height:15px;
+    font-size: 12px;
+    display: none;
+}
+
+.focus-section:hover  .checkbox, .focus-section:hover  .close{
+    display:inline-block;
+}
+
+.finished{
+    text-decoration: line-through;
+}
+
+
+/* =========================== END MAIN CONTENT ============================ */
+
+
+/* ================================ FOOTER ================================= */
+footer {
+    display: flex;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    font-weight: bold;
+    
+    /* shadow */
+    background: -webkit-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+    background: -o-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+    background: -moz-linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+/*    border-top: 1px solid white;*/
+    
+}
+
+/* quote feature */
+footer > .quote {
+    flex: 1;
+    padding: 0 2em;
+    font-size: 1.1em;
+    text-align: center;
+    align-self: center;
+}
+
+footer > .quote > a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    text-shadow: 0px 0px 10px #000;
+}
+
+footer > .quote > a:hover {
+    color: rgba(255,255,255,1);
+}
+/* end quote feature */
+
+
+footer .footer-left,
+footer .footer-right {
+    cursor: pointer;
+    flex: 0 auto;
+    border-bottom: 2px solid transparent;
+}
+
+footer .footer-left {
+    padding: 0.75em;
+}
+
+footer .footer-right {
+    font-size: 1.2em;
+    color: rgba(255,255,255,0.75);
+    height: 100%;
+    padding: 1.3em 1em;
+    
+    /* prevent highlighting of text */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+}
+
+footer .footer-right:hover,
+footer .footer-left:hover {
+    color: rgba(255,255,255,1);
+    border-bottom: 2px solid #fff;
+}
+
+footer #svg-gear {
+    width: 35px;
+    height: 35px;
+    fill: rgba(255,255,255,0.75);
+}
+
+footer #svg-gear:hover {
+    fill: rgba(255,255,255,1);
+}
+
+/* ============================== END FOOTER =============================== */
+
+
+/* ============================== RESPONSIVE =============================== */
+
+/* Greater than 640x, show nav text & hide icons */
+@media all and (min-width: 640px) {
+    
+}
+
+/* Tiny screens: narrow nav icon spacing & full width content */
+@media all and (max-width: 360px) {
+
+    section {
+        font-size: 2em;
+    }
+    
+    article {
+        padding: 0 0 0.5em 0;
+    }
+}
+
+/*TODO LIST*/
+#new-task {
+    background: rgba(255,255,255,0.1);
+    border-bottom: 1px solid white;
+    color: white;
+    text-align: center;
+    text-shadow: none;
+    outline: 0;
+    display: inline-block;
+    width: 314px;
+    margin-left: 19px;
+    font-size:19px;
+    height: 48px;
+
+}
+#taskList {
+    width: 350px;
+    margin: 17px auto;
+    font-size:19px;
+    font-weight:600;
+}
+
+ul li {
+    background-color:#17181D;
+    height:48px;
+    width:314px;
+    padding-left:12px;
+    margin:0 auto 10px auto;
+    line-height:48px;
+    list-style:none;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+ul li .check-task {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+ul li .delete-task {
+    float: right;
+    margin: 0 10px 0 0;
+}
