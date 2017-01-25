@@ -1,129 +1,141 @@
 /* jshint esversion:6 */
-/* globals jQuery, LS, time */
+/* globals $, LS, time */
 
-(function ($, LS) {
-
-    var settingsModule = (function () {
-        
-        // cache DOM
-        var $settingsPanel  = $('#settings-panel'),
-            $userName       = $settingsPanel.find('#name-input'),
-            $clockFormat    = $settingsPanel.find('#12-hr-clock-chkbx'),
-            $showWeather    = $settingsPanel.find('#show-weather-chkbx'),
-            $showTodos      = $settingsPanel.find('#show-todo-chkbx'),
-            $saveSettings   = $settingsPanel.find('#save-settings-btn'),
-            $clearSettings  = $settingsPanel.find('#clear-settings-btn'),
-            
-            state = loadState();
-        
-        
-        // bind events
-        $saveSettings.on('click',  saveSettings);
-        $clearSettings.on('click', clearSettings);
-        
-        
-        // load state
-        function loadState() {
-            if (LS.getData('momentum-settings')) {
-                return {
-                    userName   : LS.getData('momentum-settings').userName,
-                    clockFormat: LS.getData('momentum-settings').clockFormat,
-                    showWeather: LS.getData('momentum-settings').showWeather,
-                    showTodos  : LS.getData('momentum-settings').showTodos
-                };
-            } else {
-                return {
-                    userName   : undefined,
-                    clockFormat: true,
-                    showWeather: true,
-                    showTodos  : true
-                };
-            }
-        }
-        
-        
-        // populate settings fields
-        if (state.userName) {
-            $userName[0].value  = state.userName;
-        }
-        $clockFormat[0].checked = state.clockFormat;
-        $showWeather[0].checked = state.showWeather;
-        $showTodos[0].checked   = state.showTodos;
-        
-        
-        // handle save settings event
-        function saveSettings(event) {
-            
-            event.preventDefault();
-            
-            state = {
-                userName   : $userName[0].value || undefined,
-                clockFormat: $clockFormat[0].checked,
-                showWeather: $showWeather[0].checked,
-                showTodos  : $showTodos[0].checked
+var Settings = (function () {
+    
+    var DOM = {},
+        state = loadState();
+    
+    
+    // cache DOM elements
+    function cacheDom() {
+        DOM.$settingsPanel = $('#settings-panel');
+        DOM.$userName      = DOM.$settingsPanel.find('#name-input');
+        DOM.$clockFormat   = DOM.$settingsPanel.find('#12-hr-clock-chkbx');
+        DOM.$showWeather   = DOM.$settingsPanel.find('#show-weather-chkbx');
+        DOM.$showTodos     = DOM.$settingsPanel.find('#show-todo-chkbx');
+        DOM.$saveSettings  = DOM.$settingsPanel.find('#save-settings-btn');
+        DOM.$clearSettings = DOM.$settingsPanel.find('#clear-settings-btn');
+    }
+    
+    
+    // bind events
+    function bindEvents() {
+        DOM.$saveSettings.on('click', saveSettings);
+        DOM.$clearSettings.on('click', clearSettings);
+    }
+    
+    
+    // load state
+    function loadState() {
+        if (LS.getData('momentum-settings')) {
+            return {
+                userName   : LS.getData('momentum-settings').userName,
+                clockFormat: LS.getData('momentum-settings').clockFormat,
+                showWeather: LS.getData('momentum-settings').showWeather,
+                showTodos  : LS.getData('momentum-settings').showTodos
             };
-            
-            LS.setData('momentum-settings', state);
-            
-            updateDom();
-            
-            event.stopPropagation();
+        } else {
+            return {
+                userName   : undefined,
+                clockFormat: true,
+                showWeather: true,
+                showTodos  : true
+            };
         }
+    }
         
         
-        // handle clear settings event
-        function clearSettings(event) {
-            
-            event.preventDefault();
-            
-            // erase 'momentum-storage'
-            LS.deleteData('momentum-settings');
-            
-            // reset settings to defaults
-            $userName[0].value      = '';
-            $clockFormat[0].checked = true;
-            $showWeather[0].checked = true;
-            $showTodos[0].checked   = true;
-            
-            updateDom();
+    // save settings event handler
+    function saveSettings(event) {
 
-            event.stopPropagation();
-        }
-        
-        
-        // render DOM elements
-        function updateDom() {
-            
-            // call time module to re-render time & greeting
-            time.init();
-            
-            // re-load state
-            loadState();
-            
-            // show/hide todos
-            if (!state.showTodos) {
-                $('#todos-btn').css('display', 'none');
-            } else {
-                $('#todos-btn').css('display', 'block');
-            }
-            
-            // show/hide weather
-            if (!state.showWeather) {
-                $('#weather-feature').css('display', 'none');
-            } else {
-                $('#weather-feature').css('display', 'block');
-            }
-            
-            // close settings panel
-            $('#settings-panel').removeClass('settings-show');
-            $('#overlay').hide();
-            
-        }
-        
-        // fire on page load
+        event.preventDefault();
+
+        state = {
+            userName   : DOM.$userName[0].value || undefined,
+            clockFormat: DOM.$clockFormat[0].checked,
+            showWeather: DOM.$showWeather[0].checked,
+            showTodos  : DOM.$showTodos[0].checked
+        };
+
+        LS.setData('momentum-settings', state);
+
         updateDom();
 
+        event.stopPropagation();
+    }
         
-    }());
+        
+    // clear settings event handler
+    function clearSettings(event) {
 
-})(jQuery, LS);
+        event.preventDefault();
+
+        // erase 'momentum-storage'
+        LS.deleteData('momentum-settings');
+
+        // reset settings to defaults
+        DOM.$userName[0].value      = '';
+        DOM.$clockFormat[0].checked = true;
+        DOM.$showWeather[0].checked = true;
+        DOM.$showTodos[0].checked   = true;
+
+        updateDom();
+
+        event.stopPropagation();
+    }
+        
+        
+    // update DOM elements
+    function updateDom() {
+        
+        // populate settings panel fields
+        if (state.userName) {
+            DOM.$userName[0].value  = state.userName;
+        }
+        DOM.$clockFormat[0].checked = state.clockFormat;
+        DOM.$showWeather[0].checked = state.showWeather;
+        DOM.$showTodos[0].checked   = state.showTodos;
+
+
+        // call time module to re-render time & greeting
+        Time.init();
+
+        // re-load state
+        loadState();
+
+        // toggle todos feature
+        if (!state.showTodos) {
+            $('#todos-btn').css('display', 'none');
+        } else {
+            $('#todos-btn').css('display', 'block');
+        }
+
+        // toggle weather feature
+        if (!state.showWeather) {
+            $('#weather-feature').css('display', 'none');
+        } else {
+            $('#weather-feature').css('display', 'block');
+        }
+
+        // finally, close settings panel
+        $('#settings-panel').removeClass('left-panel-show');
+        $('#overlay').hide();
+
+    }
+
+    
+    // public init method
+    function init() {
+        cacheDom();
+        bindEvents();
+        updateDom();
+    }
+    
+    
+    // export public methods
+    return {
+        init: init
+    };
+
+}());

@@ -1,83 +1,86 @@
 /* jshint esversion:6 */
-/* globals $, document */
+/* globals $ */
 
-(function ($) {
+var Quotes = (function () {
+    
+    // init placeholder
+    var DOM = {};
 
-    'use strict';
+    
+    // cache DOM elements
+    function cacheDom() {
+        DOM.$quoteFeature = $('#quoteFeature');
+    }
+    
 
-    var quoteFeature = (function quoteFeature() {
+    // http GET random quote
+    function getQuote() {
 
-        // cache DOM elements
-        var $quoteFeature = $('#quoteFeature');
+        // api parameters
+        var api = {
+            endpoint: 'https://quotesondesign.com/wp-json/posts',
+            params: {
+                'filter[orderby]': 'rand',
+                'filter[posts_per_page]': 1,
 
-        // get random quote
-        function getQuote() {
-
-            // api parameters
-            var api = {
-                endpoint: 'https://quotesondesign.com/wp-json/posts',
-                params: {
-                    'filter[orderby]': 'rand',
-                    'filter[posts_per_page]': 1,
-
-                    // Date query param to make each request unique.
-                    // this hack disables browser caching of results.
-                    'processdate': (new Date()).getTime()
-                },
-                inspectResponse: function (response) {
-                    console.log(response[0]);
-                    console.log(response[0].content.length);
-                }
-            };
-
-            // do the work
-            $.getJSON(api.endpoint, api.params)
-                .then(renderQuote)
-                .catch(handleError);
-        }
-        
-        
-        // Clean quote response strings
-        function clean(str) {
-            var pTagRex = /(<([^>]+)>)|(&lt;([^>]+)&gt;)/ig,
-                
-                // temporary element never actually added to DOM.
-                // used to decode 'special html entities'
-                text = document.createElement("textarea");
-            
-            // set element = html quote string
-            text.innerHTML = str;
-            
-            // .value converts 'special entities' to regular text.
-            // .replace removes the <p> tags
-            return text.value.replace(pTagRex, '');
-        }
-
-        // render
-        function renderQuote(response) {
-            // console.log(response);  // for diag
-            var quote = clean(response[0].content)
-            $quoteFeature
-                .attr('href', response[0].link)
-                .attr('target', '_blank')
-                .html(quote);
-            
-        }
-
-        // handle error
-        function handleError(err) {
-            console.log(err);
-        }
-
-        // export public method
-        return {
-            getQuote: getQuote
+                // Date query param to make each request unique.
+                // this hack disables browser caching of results.
+                'processdate': (new Date()).getTime()
+            }
         };
 
-    }());
-    // ========== END QUOTES MODULE ========== //
+        // do the work
+        $.getJSON(api.endpoint, api.params)
+            .then(renderQuote)
+            .catch(handleError);
+    }
 
-    // call quoteFeature public method 'getQuote()'
-    quoteFeature.getQuote();
+        
+    // clean quote response strings
+    function clean(str) {
+        var pTagRex = /(<([^>]+)>)|(&lt;([^>]+)&gt;)/ig,
 
-}(jQuery));
+            // temporary element never actually added to DOM.
+            // used to decode 'special html entities'
+            $text = $('<textarea></textarea>');
+
+        // set element = html quote string
+        $text.html(str);
+
+        // .value converts 'special entities' to regular text.
+        // .replace removes the <p> tags
+        return $text.val().replace(pTagRex, '');
+    }
+
+    
+    // render to DOM
+    function renderQuote(response) {
+        
+        var quote = clean(response[0].content);
+        DOM.$quoteFeature
+            .attr('href', response[0].link)
+            .attr('target', '_blank')
+            .html(quote);
+
+    }
+    
+
+    // handle errors
+    function handleError(err) {
+        console.warn(err);
+    }
+    
+    
+    // public init method
+    function init() {
+        cacheDom();
+        getQuote();
+    }
+
+    
+    // export public methods
+    return {
+        init: init
+    };
+
+}());

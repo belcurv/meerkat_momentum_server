@@ -14,6 +14,7 @@
     <!-- css -->
     <link rel="stylesheet" href="css/grid.css">
     <link rel="stylesheet" href="css/momentum.css">
+    <link rel="stylesheet" href="css/panels.css">
     
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="assets/meerkat_dark_180x180px.png">
@@ -32,7 +33,7 @@
             </div>
             <div class="Grid-cell--autoSize">
                 <div id="weather-feature">
-                    [weather]
+                    <img id="icon_img" />
                 </div>
             </div>
         </div>   
@@ -136,6 +137,14 @@
         </div>
     </aside>
 
+    <!-- ========================= WEATHER PANEL ========================== -->
+    <aside id="weather-panel" class="panel weather-panel">
+        <div class="panel-content">
+            <h1>Forecast</h1>
+            
+        </div>
+    </aside>
+   
     <article>
         <!-- ====================== TIME & GREETING ======================= -->
         <section>
@@ -147,25 +156,26 @@
        </section>
 
        <!-- =========================== FOCUS ============================= -->
-       <section class = "focus-section">
-            <form class = "focus">
+       <section class="focus-section">
+            <form class="focus">
                 <label for="focus-input" class="focus ask-focus">
                     What is your main focus for today?
                 </label>
-                <input id="focus-input" class = "focus" type="text" autofocus />
+                <input id="focus-input" class="focus" type="text" autofocus />
             </form> 
-            <div class = "focus focus-list">
+            <div class="focus focus-list">
                 <h4>Today</h4>
-                        <div class = "focus-list-container">
-                            <span class = "focus-buttons checkbox">
-                                <i class="fa fa-square-o" aria-hidden="true"></i>
-                            </span>
-                            <span class = "focus-list-message"></span>
-                            <span class = "focus-buttons close">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </span>
-                        </div>
-       </section>
+                <div class = "focus-list-container">
+                    <span id="focus-chkbx" class = "focus-buttons checkbox">
+                        <i class="fa fa-square-o" aria-hidden="true"></i>
+                    </span>
+                    <span class="focus-list-message"></span>
+                    <span id="focus-close" class="focus-buttons close">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>
+                </div>
+           </div>
+        </section>
     </article>
     
     <!-- ========================= SETTINGS PANEL ========================= -->
@@ -220,8 +230,8 @@
     <!-- ========================== TODOS PANEL =========================== -->
     <aside id="todos-panel" class="panel todos-panel">
         <div class="panel-content">
-            <input type="text" name="" placeholder="Add a task" id="new-task">
-            <ul id="taskList"></ul>
+            <input id="todos-input" type="text" name="" placeholder="Add a task">
+            <ul id="todos-list"></ul>
         </div>
     </aside>
     
@@ -247,14 +257,19 @@
     
     <!-- =========================== JAVASCRIPT =========================== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--
+    <script src="js/weather.js"></script>
     <script src="js/local_storage.js"></script>
-    <script src="js/time2.js"></script>
-    <script src="js/app.js"></script>
+    <script src="js/time.js"></script>
     <script src="js/quotes.js"></script>
+    <script src="js/focus.js"></script>
     <script src="js/todos.js"></script>
+    <script src="js/panels.js"></script>
     <script src="js/settings.js"></script>
-<!--    <script src="js/weather.js"></script>-->
-
+    <script src="js/backgrounds.js"></script>
+    <script src="js/app.js"></script>
+-->
+    <script src="dist/scripts/momntm.min.js"></script>
 
 </body>
 </html>
