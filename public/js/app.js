@@ -3,7 +3,7 @@
 
 $(document).ready(function () {
     
-    BG.getBackground();
+    BG.init();
     Panels.init();
     Settings.init();
     Quotes.init();

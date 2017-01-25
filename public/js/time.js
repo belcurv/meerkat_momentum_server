@@ -14,8 +14,7 @@ var Time = (function() {
             'good looking',
             'classy',
             'human shield',
-            'meat bag',
-            'Dave'
+            'meat bag'
         ],
         dummy = selectName();
     
