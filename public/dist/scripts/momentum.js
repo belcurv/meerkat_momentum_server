@@ -3,7 +3,7 @@
 
 $(document).ready(function () {
     
-    BG.getBackground();
+    BG.init();
     Panels.init();
     Settings.init();
     Quotes.init();
@@ -16,28 +16,58 @@ $(document).ready(function () {
     setInterval(Time.init, 20000);
     
 });
-var BG = (function ($) {
+/* jshint esversion:6 */
+/* globals $ */
+
+var BG = (function () {
     
     'use strict';
     
-    function getBackground() {
+    
+    /* public init method
+    */
+    function init() {
         
-        var img_array = [
-                'static_background.jpg',
-                '13.jpg'
-            ],
-            index = Math.floor(Math.random() * img_array.length);
+        var imgUrl = 'https://unsplash.it/1920/1080/?random';
         
-        $('.splash')
-            .css('background-image', 'url(assets/' + img_array[index] + ')')
-            .css('opacity', 1);
+        $.when(loadImg(imgUrl)).done(render);
     }
     
+    
+    /* asynchronous image loader
+     *
+     * @params   [string]   source   [the image API endpoint]
+     * @returns  [object]            [promise object]
+    */
+    function loadImg(source) {
+                
+        return $.Deferred(function (task) {
+            var image = new Image();
+            image.onload = function() { task.resolve(image); };
+            image.onerror = function() { task.reject(); };
+            image.src = source;
+        }).promise();
+        
+    }
+    
+    
+    /* update the DOM
+     *
+     * @params   [object]   image   [image element]
+    */
+    function render(image) {
+        $('.splash')
+            .append(image)
+            .css('opacity', 1);
+    }
+        
+    
+    // export public methods
     return {
-        getBackground: getBackground
+        init: init
     };
 
-}(jQuery));
+}());
 /* jshint esversion:6 */
 /* globals $, LS */
 
@@ -629,8 +659,7 @@ var Time = (function() {
             'good looking',
             'classy',
             'human shield',
-            'meat bag',
-            'Dave'
+            'meat bag'
         ],
         dummy = selectName();
     
