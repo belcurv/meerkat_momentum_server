@@ -16,7 +16,7 @@
     position: fixed;
     width: 380px;
     padding: 10px;
-    background: rgba(0,0,0,.9);
+    background: rgba(0,0,0,.8);
     border-radius: 5px;
     z-index: 999;
     transition: transform 0.3s ease;
@@ -93,6 +93,14 @@
     height: calc(50% - 64px);
 }
 
+.weather-panel table {
+    width: 100%;
+}
+
+.weather-panel table td {
+    padding: 0.3em;
+    text-align: center;
+}
 
 /* ============================ SETTINGS PANEL ============================= */
 .settings-panel {

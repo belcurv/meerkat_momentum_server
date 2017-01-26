@@ -79,6 +79,12 @@ body {
     z-index: -1;
 }
 
+.splash > img {
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+}
+
 /* ============================= END MAIN BODY ============================= */
 
 
@@ -111,29 +117,36 @@ header {
     border-top: 2px solid white;
 }
 
-div#weather-feature{
-    color: #fff;
+#weather-feature {
+    color: rgba(255,255,255,0.8);
     font-weight: bold;
-    margin: 10px;
+    margin: 5px 10px;
     cursor: pointer;
 }
 
-img#icon_img {
-    width: 50px;
+#weather-feature:hover {
+    color: rgba(255,255,255,1);
 }
 
-div#weather-feature p {
+#weather-feature #icon_img {
+    display: inline;
+    font-size: 35px;
+    margin-right: 5px;
+}
+
+#weather-feature p {
     line-height: 1em;
 }
 
-p.temp {
+#weather-feature p.temp {
     float: right;
     position: relative;
-    top: 25px;
+    top: 15px;
     font-size: 1.5em;
 }
 
-p.location {
+#weather-feature p.location {
+    margin-top: 5px;
     text-align: right;
 }
 
@@ -207,7 +220,6 @@ section #time-period {
     text-align: center;
     display: inline-block;
     width: 720px;
-    text-shadow: none;
 }
 
 .ask-focus {
@@ -224,6 +236,7 @@ section #time-period {
     background: rgba(255,255,255,0.1);
     border-bottom: 2px solid white;
     outline: 0;
+    text-shadow: none;
 }
 
 .focus-list{
