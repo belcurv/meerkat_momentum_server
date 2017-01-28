@@ -107,14 +107,17 @@ header {
 }
 
 .brand {
-    height: 54px;
-    padding: 5px 10px 0 10px;
+    height: 60px;
+    width: 60px;
     cursor: pointer;
     border-top: 2px solid transparent;
+    background: url('../assets/meerkat_icon.png') no-repeat 0 0;
+    z-index: 2;
 }
 
 .brand:hover {
     border-top: 2px solid white;
+    background-position: -59px 0;
 }
 
 #weather-feature {
@@ -132,6 +135,7 @@ header {
     display: inline;
     font-size: 35px;
     margin-right: 5px;
+    border: 1px solid red;
 }
 
 #weather-feature p {
@@ -342,15 +346,25 @@ footer .footer-right {
     border-bottom: 2px solid transparent;
 }
 
-footer .footer-left {
-    padding: 0.75em;
+footer .footer-left .gear-icon {
+    font-size: 30px;
+    height: 100%;
+    width: 50px;
+    padding: 15px 0;
+    text-align: center;
+    opacity: .7;
+}
+
+footer .footer-left .gear-icon:hover {
+    opacity:1;
+    border-bottom: 2px solid white;
 }
 
 footer .footer-right {
     font-size: 1.2em;
     color: rgba(255,255,255,0.75);
     height: 100%;
-    padding: 1.3em 1em;
+    padding: 1.3em 10px;
     
     /* prevent highlighting of text */
     -webkit-user-select: none;
@@ -360,21 +374,12 @@ footer .footer-right {
     
 }
 
-footer .footer-right:hover,
-footer .footer-left:hover {
+footer .footer-right:hover {
     color: rgba(255,255,255,1);
     border-bottom: 2px solid #fff;
 }
 
-footer #svg-gear {
-    width: 35px;
-    height: 35px;
-    fill: rgba(255,255,255,0.75);
-}
 
-footer #svg-gear:hover {
-    fill: rgba(255,255,255,1);
-}
 
 /* ============================== END FOOTER =============================== */
 
